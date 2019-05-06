@@ -16,9 +16,11 @@ export const addKey = key => dispatch => {
 };
 
 export const removeKey = key => {
+	ipcRenderer.send("remove:key", key);
+
 	return {
 		type: REMOVE_KEY,
-		payload: key
+		payload: { key }
 	};
 };
 

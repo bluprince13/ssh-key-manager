@@ -6,7 +6,7 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import keysReducer from "./keys_reducer";
 
 const rootReducer = combineReducers({
-	keys_reducer: keysReducer
+	keys: keysReducer
 });
 
 const store = createStore(

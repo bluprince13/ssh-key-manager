@@ -58,7 +58,8 @@ app.on("activate", () => {
 
 ipcMain.on("get:keys", event => {
 	const homedir = process.env.HOME;
-	exec("ls -a " + homedir + "/.ssh", (err, stdout, stderr) => {
+	const sshdir = homedir + "/.ssh";
+	exec("ls -a " + sshdir, (err, stdout, stderr) => {
 		if (err) {
 			console.error(`exec error: ${err}`);
 			return;
@@ -77,12 +78,27 @@ ipcMain.on("get:keys", event => {
 				keys.push({
 					privateKeyFilename,
 					publicKeyFilename,
-					privateKeyPath: homedir + privateKeyFilename,
-					publicKeyPath: homedir + publicKeyFilename
+					privateKeyPath: sshdir + "/" + privateKeyFilename,
+					publicKeyPath: sshdir + "/" + publicKeyFilename
 				});
 			}
 		}
 
 		mainWindow.webContents.send("received:keys", keys);
 	});
+});
+
+ipcMain.on("remove:key", (event, key) => {
+	const { privateKeyPath, publicKeyPath } = key;
+	exec(
+		"rm " + privateKeyPath + " " + publicKeyPath,
+		(err, stdout, stderr) => {
+			if (err) {
+				console.error(`exec error: ${err}`);
+				return;
+			}
+
+			mainWindow.webContents.send("removed:key", key);
+		}
+	);
 });

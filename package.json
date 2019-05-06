@@ -12,8 +12,10 @@
 		"react-router": "5.0.0",
 		"react-router-dom": "5.0.0",
 		"react-scripts": "3.0.0",
+		"react-tooltip": "3.10.0",
 		"redux": "4.0.1",
-		"redux-thunk": "2.3.0"
+		"redux-thunk": "2.3.0",
+		"styled-components": "4.2.0"
 	},
 	"main": "public/electron.js",
 	"scripts": {
