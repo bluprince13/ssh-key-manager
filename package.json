@@ -5,9 +5,15 @@
 	"private": true,
 	"dependencies": {
 		"electron-is-dev": "1.1.0",
+		"ls": "0.2.1",
 		"react": "^16.8.6",
 		"react-dom": "^16.8.6",
-		"react-scripts": "3.0.0"
+		"react-redux": "7.0.3",
+		"react-router": "5.0.0",
+		"react-router-dom": "5.0.0",
+		"react-scripts": "3.0.0",
+		"redux": "4.0.1",
+		"redux-thunk": "2.3.0"
 	},
 	"main": "public/electron.js",
 	"scripts": {
@@ -41,6 +47,7 @@
 		"concurrently": "4.1.0",
 		"electron": "5.0.1",
 		"electron-builder": "20.39.0",
+		"redux-devtools-extension": "2.13.8",
 		"typescript": "3.4.5",
 		"wait-on": "3.2.0"
 	},
