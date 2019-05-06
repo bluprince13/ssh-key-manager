@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 
-import { connect } from "react-redux";
-import * as actions from "../actions";
+import { withRouter } from "react-router-dom";
+
 const StyledIcon = styled.i``;
 
 const StyledButton = styled.button`
@@ -35,11 +35,15 @@ const StyledButton = styled.button`
 class AddButton extends Component {
 	render() {
 		return (
-			<StyledButton onClick={this.props.addKey}>
+			<StyledButton
+				onClick={() => {
+					this.props.history.push("/add");
+				}}
+			>
 				<StyledIcon className="fas fa-plus fa-md mx-auto" />
 			</StyledButton>
 		);
 	}
 }
 
-export default AddButton;
+export default withRouter(AddButton);

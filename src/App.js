@@ -5,6 +5,7 @@ import { Provider } from "react-redux";
 import store from "./reducers";
 
 import Browser from "./screens/Browser";
+import AddForm from "./screens/AddForm";
 import Header from "./components/Header";
 
 export default function App() {
@@ -14,6 +15,7 @@ export default function App() {
 				<div className="app">
 					<Header />
 					<Switch>
+						<Route path="/add" component={AddForm} />
 						<Route path="/" component={Browser} />
 					</Switch>
 				</div>
