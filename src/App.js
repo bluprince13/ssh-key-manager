@@ -1,6 +1,7 @@
 import React from "react";
-import { HashRouter as Router, Route, Switch } from "react-router-dom";
+import { Router, Route, Switch } from "react-router-dom";
 import { Provider } from "react-redux";
+import history from "./helpers/history";
 
 import store from "./reducers";
 
@@ -11,7 +12,7 @@ import Header from "./components/Header";
 export default function App() {
 	return (
 		<Provider store={store}>
-			<Router>
+			<Router history={history}>
 				<div className="app">
 					<Header />
 					<Switch>

@@ -1,9 +1,7 @@
 import _ from "lodash";
 import {
 	GET_KEYS,
-	ADD_KEY,
 	REMOVE_KEY,
-	REMOVE_ALL_KEYS
 } from "../actions/types";
 import { statement } from "@babel/template";
 
@@ -14,8 +12,6 @@ export default (state = INITIAL_STATE, action) => {
 		case GET_KEYS:
 			const { keys } = action.payload;
 			return keys;
-		case ADD_KEY:
-			return { ...state, [action.payload.path]: action.payload };
 		case REMOVE_KEY:
 			const { key: keyToRemove } = action.payload;
 			const new_keys = state.filter(key => {
@@ -24,8 +20,6 @@ export default (state = INITIAL_STATE, action) => {
 				);
 			});
 			return new_keys;
-		case REMOVE_ALL_KEYS:
-			return INITIAL_STATE;
 		default:
 			return state;
 	}

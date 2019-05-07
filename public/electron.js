@@ -102,3 +102,27 @@ ipcMain.on("remove:key", (event, key) => {
 		}
 	);
 });
+
+ipcMain.on("add:key", (event, key) => {
+	const homedir = process.env.HOME;
+	const sshdir = homedir + "/.ssh";
+	const { filename, passphrase } = key;
+	const comment = "";
+	var command =
+		"ssh-keygen -t rsa -b 4096 -f " +
+		sshdir +
+		"/" +
+		filename +
+		" -N " +
+		(passphrase ? passphrase : '""') +
+		(comment ? "-C " + '"' + comment + '"' : "");
+
+	exec(command, (err, stdout, stderr) => {
+		if (err) {
+			console.error(`exec error: ${err}`);
+			return;
+		}
+
+		mainWindow.webContents.send("added:key", key);
+	});
+});

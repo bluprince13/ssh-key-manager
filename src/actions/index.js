@@ -1,5 +1,6 @@
 import { ipcRenderer } from "electron";
 import { GET_KEYS, ADD_KEY, REMOVE_KEY, REMOVE_ALL_KEYS } from "./types";
+import history from "../helpers/history";
 
 export const getKeys = () => dispatch => {
 	ipcRenderer.send("get:keys");
@@ -10,18 +11,19 @@ export const getKeys = () => dispatch => {
 };
 
 export const addKey = key => dispatch => {
-	ipcRenderer.on("key:added", (event, { video, outputPath }) => {
-		dispatch({ type: ADD_KEY, payload: { ...key } });
+	ipcRenderer.send("add:key", key);
+
+	ipcRenderer.on("added:key", (event, key) => {
+		history.push("/");
 	});
 };
 
-export const removeKey = key => {
+export const removeKey = key => dispatch => {
 	ipcRenderer.send("remove:key", key);
 
-	return {
-		type: REMOVE_KEY,
-		payload: { key }
-	};
+	ipcRenderer.on("removed:key", (event, key) => {
+		dispatch({ type: REMOVE_KEY, payload: { key } });
+	});
 };
 
 export const removeAllKeys = () => {

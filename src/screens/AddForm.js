@@ -24,18 +24,18 @@ const renderField = ({ input, label, type, meta: { touched, error } }) => (
 
 class AddForm extends Component {
 	render() {
-		const { pristine, reset, submitting } = this.props;
+		const { handleSubmit, pristine, reset, submitting } = this.props;
 
 		const goHome = () => {
 			this.props.history.push("/");
 		};
 
-		const handleSubmit = () => {
-			goHome();
+		const submit = values => {
+			this.props.addKey(values);
 		};
 
 		return (
-			<form onSubmit={handleSubmit}>
+			<form onSubmit={handleSubmit(submit)}>
 				<Field
 					name="filename"
 					type="text"
@@ -49,11 +49,7 @@ class AddForm extends Component {
 					label="Passphrase"
 				/>
 				<div>
-					<button
-						type="submit"
-						disabled={submitting}
-						onClick={handleSubmit}
-					>
+					<button type="submit" disabled={submitting}>
 						Submit
 					</button>
 					<button
@@ -79,5 +75,8 @@ AddForm = connect(
 AddForm = withRouter(AddForm);
 export default reduxForm({
 	form: "AddForm", // a unique identifier for this form
-	validate // <--- validation function given to redux-form
+	validate, // <--- validation function given to redux-form
+	initialValues: {
+		passphrase: ""
+	}
 })(AddForm);
