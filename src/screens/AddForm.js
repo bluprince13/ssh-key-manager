@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Field, reduxForm } from "redux-form";
 import { withRouter } from "react-router-dom";
-import styled, { keyframes } from "styled-components";
+import styled, { keyframes, css } from "styled-components";
 
 import * as actions from "../actions";
 import Tooltip from "../components/Tooltip";
@@ -91,9 +91,12 @@ const shadowpulse = keyframes`
 `;
 
 const LoadingButton = styled(StyledButton)`
-	&: focus {
-		animation: ${shadowpulse} 1s infinite;
-	}
+	animation: ${props =>
+		props.submitted
+			? css`
+					${shadowpulse} 1s infinite
+			  `
+			: ""};
 `;
 
 const validate = values => {
@@ -114,6 +117,10 @@ const renderField = ({ input, label, type, meta: { touched, error } }) => (
 );
 
 class AddForm extends Component {
+	state = {
+		submitted: false
+	};
+
 	render() {
 		const { handleSubmit, pristine, reset, submitting } = this.props;
 
@@ -122,8 +129,8 @@ class AddForm extends Component {
 		};
 
 		const submit = values => {
+			this.submitted = true;
 			this.props.addKey(values);
-			
 		};
 
 		return (
@@ -172,6 +179,7 @@ class AddForm extends Component {
 						<Tooltip id="reset" />
 					</StyledButton>
 					<LoadingButton
+						submitted={this.submitted}
 						type="submit"
 						style={{ margin: "0 auto" }}
 						disabled={submitting}
