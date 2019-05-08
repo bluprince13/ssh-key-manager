@@ -2,31 +2,21 @@ import React, { Component } from "react";
 import styled from "styled-components";
 
 import ReactTooltip from "react-tooltip";
+import Tooltip from "./Tooltip";
 import { copyToClipboard } from "../helpers";
 
 const StyledRow = styled.li`
-	background: #e0f7fa;
+	background: ${props => props.theme.lightest};
+	font-size: ${props => props.theme.medium};
 `;
 
 const StyledIcon = styled.i`
 	&: hover {
-		color: red;
+		color: ${props => props.theme.highlight};
 	}
 `;
 
 class KeyList extends Component {
-	customToolTip(id) {
-		return (
-			<ReactTooltip
-				id={id}
-				place="top"
-				type="dark"
-				effect="solid"
-				isCapture={true}
-			/>
-		);
-	}
-
 	handleCopy(publicKeyPath) {
 		copyToClipboard(publicKeyPath);
 
@@ -59,8 +49,8 @@ class KeyList extends Component {
 								<StyledIcon className="fas fa-copy fa-fw" />
 							</span>
 						</span>
-						{this.customToolTip("copy")}
-						{this.customToolTip("copied")}
+						<Tooltip id="copy" />
+						<Tooltip id="copied" />
 					</div>
 					<div className="float-right">
 						<span
@@ -72,7 +62,7 @@ class KeyList extends Component {
 						>
 							<StyledIcon className="fas fa-trash-alt" />
 						</span>
-						{this.customToolTip("delete")}
+						<Tooltip id="delete" />
 					</div>
 				</StyledRow>
 			);

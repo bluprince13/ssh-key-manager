@@ -6,7 +6,7 @@ import { withRouter } from "react-router-dom";
 const StyledIcon = styled.i``;
 
 const StyledButton = styled.button`
-	background-color: #b2ebf2;
+	background-color:  ${props => props.theme.light};
 	margin: 1rem auto;
 	display: block;
 
@@ -15,10 +15,10 @@ const StyledButton = styled.button`
 	border-radius: 50%;
 
 	&: hover {
-		background-color: #4dd0e1;
+		background-color: ${props => props.theme.dark};
 
 		${StyledIcon} {
-			color: red;
+			color:  ${props => props.theme.highlight};
 		}
 	}
 
@@ -28,7 +28,7 @@ const StyledButton = styled.button`
 	}
 
 	&: active {
-		background-color: #0097a7;
+		background-color: ${props => props.theme.darkest};
 	}
 `;
 
