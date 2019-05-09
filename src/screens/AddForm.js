@@ -74,11 +74,20 @@ const LoadingButton = styled(StyledButton)`
 			: ""};
 `;
 
-const validate = values => {
+const validate = (values, props) => {
 	const errors = {};
 	if (!values.filename) {
 		errors.filename = "Required";
 	}
+
+	const { keys } = props;
+	const isFilenameUsed = keys.filter(
+		key => key.privateKeyFilename === values.filename
+	);
+	if (isFilenameUsed) {
+		errors.filename = "This filename is already taken";
+	}
+
 	return errors;
 };
 
@@ -94,6 +103,17 @@ class AddForm extends Component {
 	state = {
 		submitted: false
 	};
+
+	componentDidMount() {
+		const { dispatch, change } = this.props;
+		const { keys } = this.props;
+		const isDefaultUsed = keys.filter(
+			key => key.privateKeyFilename === "id_rsa"
+		);
+		if (isDefaultUsed.length == 0) {
+			dispatch(change("filename", "id_rsa"));
+		}
+	}
 
 	render() {
 		const { handleSubmit, pristine, reset, submitting } = this.props;
@@ -169,15 +189,21 @@ class AddForm extends Component {
 	}
 }
 
-AddForm = connect(
-	undefined,
-	actions
-)(AddForm);
-AddForm = withRouter(AddForm);
-export default reduxForm({
+function mapStateToProps(state) {
+	return { keys: state.keys };
+}
+
+AddForm = reduxForm({
 	form: "AddForm", // a unique identifier for this form
 	validate, // <--- validation function given to redux-form
 	initialValues: {
 		passphrase: ""
 	}
 })(AddForm);
+AddForm = connect(
+	mapStateToProps,
+	actions
+)(AddForm);
+AddForm = withRouter(AddForm);
+
+export default AddForm;
