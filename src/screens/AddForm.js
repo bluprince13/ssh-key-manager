@@ -38,6 +38,10 @@ const StyledInput = styled.input`
 	border-radius: 0.25rem;
 	transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 
+	&::placeholder {
+		font-size: ${props => props.theme.small};
+	}
+
 	&:focus {
 		color: #495057;
 		background-color: #fff;
