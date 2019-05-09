@@ -88,7 +88,7 @@ const validate = (values, props) => {
 	const isFilenameUsed = keys.filter(
 		key => key.privateKeyFilename === values.filename
 	);
-	if (isFilenameUsed) {
+	if (isFilenameUsed.length != 0) {
 		errors.filename = "This filename is already taken";
 	}
 
