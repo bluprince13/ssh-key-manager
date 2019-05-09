@@ -8,7 +8,7 @@
 
 ## Installation
 
-Just download the <a href="/bluprince13/ssh-key-manager/releases/latest/download/ssh-key-manager-0.1.0.dmg" target="_blank">latest
+Just download the <a href="/bluprince13/ssh-key-manager/releases/latest/" target="_blank">latest
 release</a>. Easy peasy!
 
 ## Features
