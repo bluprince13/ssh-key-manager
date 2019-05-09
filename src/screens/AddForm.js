@@ -6,6 +6,7 @@ import styled, { keyframes, css } from "styled-components";
 
 import * as actions from "../actions";
 import Tooltip from "../components/Tooltip";
+import { StyledButton, StyledIcon } from "../components/styled";
 
 const StyledForm = styled.form`
 	margin: 2rem;
@@ -19,7 +20,9 @@ const StyledField = styled.div`
 	margin-bottom: 1rem;
 `;
 
-const StyledInputError = styled.div``;
+const StyledLabel = styled.label`
+	font-size: ${props => props.theme.small};
+`;
 
 const StyledInput = styled.input`
 	display: block;
@@ -53,34 +56,6 @@ const StyledButtonGroup = styled.div`
 	margin: 2rem;
 `;
 
-const StyledIcon = styled.i``;
-
-const StyledButton = styled.button`
-	background-color: #b2ebf2;
-	display: block;
-
-	height: 3rem;
-	width: 3rem;
-	border-radius: 50%;
-
-	&: hover:enabled {
-		background-color: #4dd0e1;
-
-		${StyledIcon} {
-			color: red;
-		}
-	}
-
-	&:  active:enabled {
-		background-color: #0097a7;
-	}
-
-	&: focus {
-		outline: none;
-		border: none;
-	}
-`;
-
 const shadowpulse = keyframes`
 	0% {
 		box-shadow: 0 0 0 0px rgba(0, 0, 0, 0.2);
@@ -109,10 +84,9 @@ const validate = values => {
 
 const renderField = ({ input, label, type, meta: { touched, error } }) => (
 	<StyledField>
-		<StyledInputError>
-			<StyledInput {...input} placeholder={label} type={type} />
-			{touched && error && <StyledError>{error}</StyledError>}
-		</StyledInputError>
+		<StyledLabel>{label}</StyledLabel>
+		<StyledInput {...input} placeholder={label} type={type} />
+		{touched && error && <StyledError>{error}</StyledError>}
 	</StyledField>
 );
 
