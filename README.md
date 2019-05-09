@@ -1,8 +1,8 @@
 
-# SSH key manager (Mac)
+# SSH key manager (Mac only)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-> A Graphical User Interface (GUI) for easily managing your ssh keys.
+> A Graphical User Interface (GUI) for easily managing your ssh keys on your Mac.
 
 ![Demo](../assets/demo.gif)
 
