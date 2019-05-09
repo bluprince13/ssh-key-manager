@@ -4,7 +4,7 @@
 
 > A Graphical User Interface (GUI) for easily managing your ssh keys.
 
-![Demo](../assets/assets/demo.gif)
+![Demo](../assets/demo.gif)
 
 ## Installation
 
