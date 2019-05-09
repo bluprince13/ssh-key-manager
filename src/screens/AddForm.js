@@ -65,7 +65,7 @@ const shadowpulse = keyframes`
 		box-shadow: 0 0 0 0px rgba(0, 0, 0, 0.2);
 	}
 	100% {
-		box-shadow: 0 0 0 35px rgba(0, 0, 0, 0);
+		box-shadow: 0 0 0 1rem rgba(0, 0, 0, 0);
 	}
 `;
 
