@@ -9,7 +9,7 @@ import Tooltip from "../components/Tooltip";
 import { StyledButton, StyledIcon } from "../components/styled";
 
 const StyledForm = styled.form`
-	margin: 2rem;
+	margin: 1rem;
 `;
 
 const StyledFieldGroup = styled.div`
@@ -18,6 +18,7 @@ const StyledFieldGroup = styled.div`
 
 const StyledField = styled.div`
 	margin-bottom: 1rem;
+	position: relative;
 `;
 
 const StyledLabel = styled.label`
@@ -26,9 +27,15 @@ const StyledLabel = styled.label`
 
 const StyledInput = styled.input`
 	display: block;
-	width: 100%;
 
+	margin-top: 0.4rem;
+
+	width: 100%;
+	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;  
 	padding: 0.375rem 0.75rem;
+
 	font-size: ${props => props.theme.medium};
 	line-height: 1.5;
 	color: #495057;
@@ -57,7 +64,7 @@ const StyledError = styled.span`
 `;
 
 const StyledButtonGroup = styled.div`
-	margin: 2rem;
+	margin: 1rem;
 `;
 
 const shadowpulse = keyframes`
@@ -133,7 +140,7 @@ class AddForm extends Component {
 
 		return (
 			<StyledForm onSubmit={handleSubmit(submit)}>
-				<StyledFieldGroup className="clearfix">
+				<StyledFieldGroup>
 					<Field
 						name="filename"
 						type="text"

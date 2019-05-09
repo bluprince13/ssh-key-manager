@@ -8,12 +8,46 @@ import { copyToClipboard } from "../helpers";
 const StyledRow = styled.li`
 	background: ${props => props.theme.lightest};
 	font-size: ${props => props.theme.medium};
+
+	position: relative;
+	display: block;
+	padding: .75rem 1.25rem;
+	margin-bottom: -1px;
+	border: 1px solid rgba(0,0,0,.125);
+	
+	&:hover {
+		background: ${props => props.theme.light};
+	}
+
+	&:first-child {
+		border-top-left-radius: .25rem;
+		border-top-right-radius: .25rem;
+	}
+
+	&:last-child {
+		margin-bottom: 0;
+		border-bottom-right-radius: .25rem;
+		border-bottom-left-radius: .25rem;
+	}
+
 `;
 
 const StyledIcon = styled.i`
 	&: hover {
 		color: ${props => props.theme.highlight};
 	}
+`;
+
+const StyledListGroup = styled.ul`
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-ms-flex-direction: column;
+	flex-direction: column;
+	padding-left: 0;
+	margin-bottom: 0;
 `;
 
 class KeyList extends Component {
@@ -33,9 +67,8 @@ class KeyList extends Component {
 			return (
 				<StyledRow
 					key={privateKeyFilename}
-					className="list-group-item list-group-item-action"
 				>
-					<div className="float-left">
+					<div style={{ float: "left" }}>
 						{privateKeyFilename}
 						<span data-tip="Copy" data-for="copy">
 							<span
@@ -52,7 +85,7 @@ class KeyList extends Component {
 						<Tooltip id="copy" />
 						<Tooltip id="copied" />
 					</div>
-					<div className="float-right">
+					<div style={{ float: "right" }}>
 						<span
 							data-tip="Delete"
 							data-for="delete"
@@ -70,7 +103,7 @@ class KeyList extends Component {
 	}
 
 	render() {
-		return <ul className="list-group">{this.renderKeys()}</ul>;
+		return <StyledListGroup>{this.renderKeys()}</StyledListGroup>;
 	}
 }
 
