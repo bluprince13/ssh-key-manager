@@ -71,7 +71,7 @@ class KeyList extends Component {
 								onClick={() => {
 									this.handleCopy(key);
 								}}
-								data-tip="Copied"
+								data-tip="Public key copied"
 								data-event="click"
 								data-for="copied"
 							>
