@@ -63,6 +63,7 @@ class KeyList extends Component {
 
 	handleRemove(key) {
 		this.props.removeKey(key);
+		ReactTooltip.hide();
 	}
 
 	renderKeys() {
