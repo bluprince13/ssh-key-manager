@@ -1,9 +1,7 @@
-import _ from "lodash";
 import {
 	GET_KEYS,
 	REMOVE_KEY,
 } from "../actions/types";
-import { statement } from "@babel/template";
 
 const INITIAL_STATE = [];
 

@@ -61,7 +61,7 @@ class KeyList extends Component {
 		const keys = this.props.keys;
 
 		return keys.map(key => {
-			const { privateKeyFilename, publicKeyPath } = key;
+			const { privateKeyFilename } = key;
 			return (
 				<StyledRow key={privateKeyFilename}>
 					<div style={{ float: "left" }}>

@@ -95,7 +95,7 @@ const validate = (values, props) => {
 	const isFilenameUsed = keys.filter(
 		key => key.privateKeyFilename === values.filename
 	);
-	if (isFilenameUsed.length != 0) {
+	if (isFilenameUsed.length !== 0) {
 		errors.filename = "This filename is already taken";
 	}
 
@@ -121,7 +121,7 @@ class AddForm extends Component {
 		const isDefaultUsed = keys.filter(
 			key => key.privateKeyFilename === "id_rsa"
 		);
-		if (isDefaultUsed.length == 0) {
+		if (isDefaultUsed.length === 0) {
 			dispatch(change("filename", "id_rsa"));
 		}
 	}
