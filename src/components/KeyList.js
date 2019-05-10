@@ -49,12 +49,20 @@ const StyledListGroup = styled.ul`
 `;
 
 class KeyList extends Component {
+	componentDidUpdate() {
+		ReactTooltip.rebuild();
+	}
+
 	handleCopy(key) {
 		this.props.copyKey(key);
 
 		setTimeout(() => {
 			ReactTooltip.hide();
 		}, 1500);
+	}
+
+	handleRemove(key) {
+		this.props.removeKey(key);
 	}
 
 	renderKeys() {
@@ -86,7 +94,7 @@ class KeyList extends Component {
 							data-tip="Delete"
 							data-for="delete"
 							onClick={() => {
-								this.props.removeKey(key);
+								this.handleRemove(key);
 							}}
 						>
 							<StyledIcon className="fas fa-trash-alt" />
