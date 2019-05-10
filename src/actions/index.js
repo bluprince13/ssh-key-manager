@@ -1,6 +1,7 @@
 import { ipcRenderer } from "electron";
-import { GET_KEYS, ADD_KEY, REMOVE_KEY, REMOVE_ALL_KEYS } from "./types";
+import { GET_KEYS, REMOVE_KEY, COPY_KEY } from "./types";
 import history from "../helpers/history";
+import { copyToClipboard } from "../helpers";
 
 export const getKeys = () => dispatch => {
 	ipcRenderer.send("get:keys");
@@ -26,8 +27,11 @@ export const removeKey = key => dispatch => {
 	});
 };
 
-export const removeAllKeys = () => {
-	return {
-		type: REMOVE_ALL_KEYS
-	};
+export const copyKey = key => dispatch => {
+	ipcRenderer.send("copy:key", key);
+
+	ipcRenderer.on("copied:key", (event, { key, publicKey }) => {
+		copyToClipboard(publicKey);
+		dispatch({ type: COPY_KEY, payload: { key, publicKey } });
+	});
 };

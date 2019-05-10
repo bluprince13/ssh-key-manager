@@ -3,7 +3,6 @@ import styled from "styled-components";
 
 import ReactTooltip from "react-tooltip";
 import Tooltip from "./Tooltip";
-import { copyToClipboard } from "../helpers";
 
 const StyledRow = styled.li`
 	background: ${props => props.theme.lightest};
@@ -11,25 +10,24 @@ const StyledRow = styled.li`
 
 	position: relative;
 	display: block;
-	padding: .75rem 1.25rem;
+	padding: 0.75rem 1.25rem;
 	margin-bottom: -1px;
-	border: 1px solid rgba(0,0,0,.125);
-	
+	border: 1px solid rgba(0, 0, 0, 0.125);
+
 	&:hover {
 		background: ${props => props.theme.light};
 	}
 
 	&:first-child {
-		border-top-left-radius: .25rem;
-		border-top-right-radius: .25rem;
+		border-top-left-radius: 0.25rem;
+		border-top-right-radius: 0.25rem;
 	}
 
 	&:last-child {
 		margin-bottom: 0;
-		border-bottom-right-radius: .25rem;
-		border-bottom-left-radius: .25rem;
+		border-bottom-right-radius: 0.25rem;
+		border-bottom-left-radius: 0.25rem;
 	}
-
 `;
 
 const StyledIcon = styled.i`
@@ -51,8 +49,8 @@ const StyledListGroup = styled.ul`
 `;
 
 class KeyList extends Component {
-	handleCopy(publicKeyPath) {
-		copyToClipboard(publicKeyPath);
+	handleCopy(key) {
+		this.props.copyKey(key);
 
 		setTimeout(() => {
 			ReactTooltip.hide();
@@ -65,15 +63,13 @@ class KeyList extends Component {
 		return keys.map(key => {
 			const { privateKeyFilename, publicKeyPath } = key;
 			return (
-				<StyledRow
-					key={privateKeyFilename}
-				>
+				<StyledRow key={privateKeyFilename}>
 					<div style={{ float: "left" }}>
 						{privateKeyFilename}
 						<span data-tip="Copy" data-for="copy">
 							<span
 								onClick={() => {
-									this.handleCopy(publicKeyPath);
+									this.handleCopy(key);
 								}}
 								data-tip="Copied"
 								data-event="click"

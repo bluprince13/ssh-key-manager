@@ -20,6 +20,7 @@ class Browser extends Component {
 				<KeyList
 					keys={this.props.keys}
 					removeKey={this.props.removeKey}
+					copyKey={this.props.copyKey}
 				/>
 				<AddButton />
 			</StyledContainer>

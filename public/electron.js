@@ -112,7 +112,7 @@ ipcMain.on("add:key", (event, key) => {
 		sshdir +
 		"/" +
 		filename +
-		' -N ' +
+		" -N " +
 		(passphrase ? passphrase + '""' : '""') +
 		(comment ? " -C " + '"' + comment + '"' : "");
 
@@ -123,5 +123,17 @@ ipcMain.on("add:key", (event, key) => {
 		}
 
 		mainWindow.webContents.send("added:key", key);
+	});
+});
+
+ipcMain.on("copy:key", (event, key) => {
+	const { publicKeyPath } = key;
+	exec(" pbcopy < " + publicKeyPath, (err, stdout, stderr) => {
+		if (err) {
+			console.error(`exec error: ${err}`);
+			return;
+		}
+
+		mainWindow.webContents.send("copied:key", { publicKey: stdout, key });
 	});
 });
