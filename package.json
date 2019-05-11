@@ -1,7 +1,7 @@
 {
 	"name": "ssh-key-manager",
 	"homepage": "./",
-	"version": "1.0",
+	"version": "1.0.0",
 	"private": true,
 	"dependencies": {
 		"electron-is-dev": "1.1.0",
